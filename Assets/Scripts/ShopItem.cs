@@ -27,7 +27,7 @@ public class ShopItem : ScriptableObject
     int useCount = 0;
 
     [Header("Edit if Creation Upgrade or Automation")]
-    
+
     GameObject upgradable;
 
 

@@ -16,11 +16,13 @@ public class ShopItemInstantiation : MonoBehaviour
     public TMP_Text priceText;
     public Image image;
 
+    public ShopItem item;
+
     public int price;
 
-    public ShopItem item; 
+    public GameObject clickerPrefab;
+    public Transform creationSpawnPoint;
 
-    
     // Start is called before the first frame update
     void Awake()
     {
@@ -59,30 +61,80 @@ public class ShopItemInstantiation : MonoBehaviour
 
     public void Clicked()
     {
-        if(currency.GetCurrency() >= price)
+        if (currency.GetCurrency() >= price)
         {
             currency.UpdateCurrency(-price);
 
             switch (item.itemType)
             {
-                case ShopItem.ItemTypes.Creation: //creation
-
+                case ShopItem.ItemTypes.Creation:
+                    CreateClicker();
                     break;
-                case ShopItem.ItemTypes.Upgrade: // upgrade
 
+                case ShopItem.ItemTypes.Upgrade:
+                    UpgradeClicker();
                     break;
-                case ShopItem.ItemTypes.Automation: //automation
 
+                case ShopItem.ItemTypes.Automation:
+                    AutomateClicker();
                     break;
-                case ShopItem.ItemTypes.WorldChange://world change
 
+                case ShopItem.ItemTypes.WorldChange:
+                    // Placeholder for future implementation
                     break;
 
                 default:
+                    Debug.LogWarning("Unhandled Shop Item Type");
                     break;
             }
-
+        }
+        else
+        {
+            Debug.Log("Not enough currency!");
         }
     }
+
+    void CreateClicker()
+    {
+        if (clickerPrefab == null)
+        {
+            Debug.LogError("Clicker prefab is not assigned!");
+            return;
+        }
+
+        Transform spawnPoint = creationSpawnPoint != null ? creationSpawnPoint : transform; // Default spawn point is this object's position
+        Instantiate(clickerPrefab, spawnPoint.position, Quaternion.identity);
+        Debug.Log("Created a new Clicker object.");
+    }
+
+    void UpgradeClicker()
+    {
+        Clicker clicker = FindObjectOfType<Clicker>();
+        if (clicker != null)
+        {
+            clicker.UpgradeClickMultiplyer(); // Increases click multiplier
+            clicker.UpgradeAutoTime(0.2f);   // Reduces autoTime by 20%
+            Debug.Log("Upgraded Clicker: Multiplier increased, AutoTime reduced.");
+        }
+        else
+        {
+            Debug.LogWarning("No Clicker found to upgrade!");
+        }
+    }
+
+    void AutomateClicker()
+    {
+        Clicker clicker = FindObjectOfType<Clicker>();
+        if (clicker != null)
+        {
+            clicker.SetAutoTime(); // Enables automatic clicking
+            Debug.Log("Clicker automation enabled.");
+        }
+        else
+        {
+            Debug.LogWarning("No Clicker found to automate!");
+        }
+    }
+
 
 }
