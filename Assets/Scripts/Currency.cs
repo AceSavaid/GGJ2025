@@ -4,29 +4,28 @@ using UnityEngine;
 
 public class CurrencyScript : MonoBehaviour
 {
-    Clicker Clicker;
+    Clicker clicker;
 
     int currency;
 
     // Start is called before the first frame update
     void Start()
     {
-        currency = Clicker.GetCurrency();
+        clicker = GetComponent<Clicker>();
+        currency = clicker.GetCurrency();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        currency = Clicker.GetCurrency();
-
-
+        currency = clicker.GetCurrency();
 
     }
 
-    public void SetCurrency(int currency)
+    public void SetCurrency(int amount)
     {
-        currency = currency;
+        currency = amount;
     }
 
     public int GetCurrency()

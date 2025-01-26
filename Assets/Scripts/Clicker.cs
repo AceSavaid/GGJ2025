@@ -7,7 +7,6 @@ using TMPro;
 public class Clicker : MonoBehaviour
 {
 
-    public GameObject clicker;
     public string clickerName;
 
     int currency = 0;
@@ -41,9 +40,6 @@ public class Clicker : MonoBehaviour
     void Start()
     {
         currencyText.text = clickerName + ": \n"+ currency.ToString();
-
-        button = GetComponentInChildren<Button>();
-        button.onClick.AddListener(Click);
         
         levelText.text = "Multiplier: " + clickMultiplyer + " \tLevel:" + level;
 
@@ -80,10 +76,12 @@ public class Clicker : MonoBehaviour
 
     public void SpawnItem()
     {
-        Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), Camera.main.farClipPlane / 2));
-        GameObject spawnedItem = Instantiate(itemToSpawn, screenPosition, Quaternion.identity);
-        Destroy(spawnedItem, 10);
-        
+        if (itemToSpawn != null)
+        {
+            Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), Camera.main.farClipPlane / 2));
+            GameObject spawnedItem = Instantiate(itemToSpawn, screenPosition, Quaternion.identity);
+            Destroy(spawnedItem, 10);
+        }
     }
 
     void PlayEffects()
