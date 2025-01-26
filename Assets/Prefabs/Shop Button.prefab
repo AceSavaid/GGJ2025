@@ -67,8 +67,12 @@ MonoBehaviour:
   descriptionText: {fileID: 3932854482771604300}
   priceText: {fileID: 7409458335630510869}
   image: {fileID: 9179220203751287987}
-  price: 0
   item: {fileID: 0}
+  price: 0
+  clickerPrefab: {fileID: 0}
+  creationSpawnPoint: {fileID: 0}
+  purchaseCount: 0
+  maxPurchase: 0
 --- !u!114 &8485452200675246264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,8 +268,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 17}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 85.91626, y: 17}
+  m_SizeDelta: {x: 371.8326, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6443231808965623628
 CanvasRenderer:

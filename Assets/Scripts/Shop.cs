@@ -34,8 +34,10 @@ public class Shop : MonoBehaviour
             {
                 shopItemScript.UpdateInformation(item.itemName, item.itemDescription, item.cost, item.image);
                 shopItemScript.item = item;
+                shopItemScript.maxPurchase = item.itemUse;
             }
 
         }
+
     }
 }

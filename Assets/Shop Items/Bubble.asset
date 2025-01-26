@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0113281b8e213441b5a384ea65d8e08, type: 3}
-  m_Name: BubbleJuice
+  m_Name: Bubble
   m_EditorClassIdentifier: 
-  itemName: BubbleJuice
+  itemName: Bubble
   itemDescription: More to make bubble with
   cost: 20
   image: {fileID: 21300000, guid: ab9a457e9398aab43800782b7dcec73a, type: 3}
-  itemType: 0
-  itemUse: 1
+  itemType: 1
+  itemUse: 1000
+  ClickerID: 0

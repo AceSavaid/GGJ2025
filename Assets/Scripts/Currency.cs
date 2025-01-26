@@ -5,9 +5,8 @@ using TMPro;
 
 public class Currency : MonoBehaviour
 {
-    Clicker clicker;
 
-    int currency;
+    int currency = 0;
     public TMP_Text currencyText;
 
     // Start is called before the first frame update

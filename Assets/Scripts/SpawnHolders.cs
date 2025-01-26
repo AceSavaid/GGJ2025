@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnHolders : MonoBehaviour
 {
-    List<Clicker> clickers = new List<Clicker>();
+    public List<Clicker> clickers = new List<Clicker>();
     List<Transform> spawnpoints = new List<Transform>();
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,9 @@ public class SpawnHolders : MonoBehaviour
 
     public void UpgradeClicker(int index)
     {
-        clickers[index].UpdateClickerMultiplyer();
+
+        clickers[index].UpgradeClickMultiplyer();
+        
     }
 
     public void AutomateClicker(int index)
@@ -37,6 +39,6 @@ public class SpawnHolders : MonoBehaviour
 
     public void UpgradeAutoClick(int index)
     {
-        clickers[index].UpgradeAutoTime();
+        clickers[index].UpgradeAutoTime(0.2f);
     }
 }

@@ -13,7 +13,7 @@ public class ShopItem : ScriptableObject
         Creation,
         Upgrade,
         Automation,
-        WorldChange,
+        UpgradeAuto,
     };
 
     public string itemName;
@@ -29,6 +29,7 @@ public class ShopItem : ScriptableObject
     [Header("Edit if Creation Upgrade or Automation")]
 
     GameObject upgradable;
+    public int ClickerID =0;
 
 
     [Header("Edit if World Change")]

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0113281b8e213441b5a384ea65d8e08, type: 3}
   m_Name: BubbleWand
   m_EditorClassIdentifier: 
-  itemName: Bubble Wand
-  itemDescription: Spawns a cute wand
+  itemName: Bubble Juice
+  itemDescription: More juice = More Bubbles!
   cost: 50
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: faba391f7175a4b44a2a8cb3c37a91ad, type: 3}
   itemType: 0
-  itemUse: 1
+  itemUse: 10
+  ClickerID: 1

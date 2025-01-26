@@ -10,6 +10,7 @@ public class ShopItemInstantiation : MonoBehaviour
 
 
     Currency currency;
+    SpawnHolders spawnHolder;
 
     public TMP_Text titleText;
     public TMP_Text descriptionText;
@@ -23,10 +24,16 @@ public class ShopItemInstantiation : MonoBehaviour
     public GameObject clickerPrefab;
     public Transform creationSpawnPoint;
 
+    public int purchaseCount;
+    public int maxPurchase;
+
     // Start is called before the first frame update
     void Awake()
     {
         currency = (Currency)FindObjectOfType<Currency>();
+        spawnHolder = FindObjectOfType<SpawnHolders>();
+
+        
     }
 
     // Update is called once per frame
@@ -56,6 +63,7 @@ public class ShopItemInstantiation : MonoBehaviour
         {
             image.sprite = sprite;
         }
+
         
     }
 
@@ -68,25 +76,32 @@ public class ShopItemInstantiation : MonoBehaviour
             switch (item.itemType)
             {
                 case ShopItem.ItemTypes.Creation:
-                    CreateClicker();
+                    spawnHolder.ActivateClicker(item.ClickerID);
                     break;
 
                 case ShopItem.ItemTypes.Upgrade:
-                    UpgradeClicker();
+                    spawnHolder.UpgradeClicker(item.ClickerID);
                     break;
 
                 case ShopItem.ItemTypes.Automation:
-                    AutomateClicker();
+                    spawnHolder.AutomateClicker(item.ClickerID);
                     break;
 
-                case ShopItem.ItemTypes.WorldChange:
+                case ShopItem.ItemTypes.UpgradeAuto:
                     // Placeholder for future implementation
+                    spawnHolder.UpgradeAutoClick(item.ClickerID);
                     break;
 
                 default:
                     Debug.LogWarning("Unhandled Shop Item Type");
                     break;
             }
+            purchaseCount++;
+            if (purchaseCount >= maxPurchase)
+            {
+                GetComponent<Button>().interactable = false;
+            }
+            
         }
         else
         {

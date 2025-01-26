@@ -11,7 +11,6 @@ public class Clicker : MonoBehaviour
     Currency currency;
 
     Button button;
-    public TextMeshProUGUI buttonText;
 
     Slider slider;
 
@@ -35,11 +34,11 @@ public class Clicker : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        currency=(Currency)FindObjectOfType<Currency>();
+        currency= (Currency)FindObjectOfType<Currency>().GetComponent<Currency>();
         
-        levelText.text = "Multiplier: " + clickMultiplyer + " \tLevel:" + level;
+        //levelText.text = "Multiplier: " + clickMultiplyer + " \tLevel:" + level;
 
     }
 
@@ -65,13 +64,14 @@ public class Clicker : MonoBehaviour
             SpawnItem();
         }
         PlayEffects();
+
     }
 
     public void SpawnItem()
     {
         if (itemToSpawn != null)
         {
-            Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), Camera.main.farClipPlane / 2));
+            Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(50, Screen.width-800), Random.Range(50, Screen.height-200), Camera.main.farClipPlane / 2));
             GameObject spawnedItem = Instantiate(itemToSpawn, screenPosition, Quaternion.identity);
             Destroy(spawnedItem, 10);
         }
@@ -94,6 +94,7 @@ public class Clicker : MonoBehaviour
     public void SetAutoTime()
     {
         autogain = true;
+        GetComponent<Button>().interactable = false;
     }
 
     public void RunAutoTime()
@@ -109,7 +110,7 @@ public class Clicker : MonoBehaviour
     public void UpgradeAutoTime(float value)
     {
         level++;
-        autoTime -= (autoTime * .2f);
+        autoTime = Mathf.Max(0.1f, autoTime - (autoTime * value));
     }
 
     public void UpgradeClickMultiplyer()

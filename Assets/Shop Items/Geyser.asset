@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Geyser
   itemDescription: Explosive bubble making power
   cost: 2500
-  image: {fileID: 0}
-  itemType: 0
-  itemUse: 1
+  image: {fileID: 21300000, guid: fcc75d830dddb874e87b3ae10a56f47e, type: 3}
+  itemType: 3
+  itemUse: 10
+  ClickerID: 6

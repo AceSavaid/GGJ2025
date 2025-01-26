@@ -16,5 +16,6 @@ MonoBehaviour:
   itemDescription: The more the merrier
   cost: 5000
   image: {fileID: 21300000, guid: 49c5cae450f6b4f43b33007b874dbbbb, type: 3}
-  itemType: 0
-  itemUse: 1
+  itemType: 3
+  itemUse: 20
+  ClickerID: 0
