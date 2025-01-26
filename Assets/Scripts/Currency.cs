@@ -1,31 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class CurrencyScript : MonoBehaviour
+public class Currency : MonoBehaviour
 {
     Clicker clicker;
 
     int currency;
+    public TMP_Text currencyText;
 
     // Start is called before the first frame update
     void Start()
     {
-        clicker = GetComponent<Clicker>();
-        currency = clicker.GetCurrency();
-
+        currencyText.text = "$" + currency;
     }
 
     // Update is called once per frame
     void Update()
     {
-        currency = clicker.GetCurrency();
 
     }
 
     public void SetCurrency(int amount)
     {
         currency = amount;
+        UpdateUI();
     }
 
     public int GetCurrency()
@@ -37,6 +37,13 @@ public class CurrencyScript : MonoBehaviour
     public void UpdateCurrency(int amount)
     {
         currency += amount;
+        UpdateUI();
+    }
+
+    void UpdateUI()
+    {
+        currencyText.text = "$ " + currency.ToString();
+
     }
 
 

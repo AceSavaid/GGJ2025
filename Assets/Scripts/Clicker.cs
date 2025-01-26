@@ -8,9 +8,7 @@ public class Clicker : MonoBehaviour
 {
 
     public string clickerName;
-
-    int currency = 0;
-    public TextMeshProUGUI currencyText;
+    Currency currency;
 
     Button button;
     public TextMeshProUGUI buttonText;
@@ -24,8 +22,8 @@ public class Clicker : MonoBehaviour
     float clickMultiplyer = 1.0f;
 
     //autogen
-    bool autogain = false;
-    float autoTime = 10;
+    public bool autogain = false;
+    public float autoTime = 10;
     float timer = 0;
 
     //item
@@ -39,7 +37,7 @@ public class Clicker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currencyText.text = clickerName + ": \n"+ currency.ToString();
+        currency=(Currency)FindObjectOfType<Currency>();
         
         levelText.text = "Multiplier: " + clickMultiplyer + " \tLevel:" + level;
 
@@ -53,19 +51,14 @@ public class Clicker : MonoBehaviour
         {
             RunAutoTime();
         }
-        UpdateUI();
 
     }
 
-    void UpdateUI()
-    {
-        currencyText.text = clickerName + ": " + currency.ToString();
-        
-    }
+    
 
     public void Click()
     {
-        currency += (int)(clickValue * clickMultiplyer);
+        currency.UpdateCurrency((int)(clickValue * clickMultiplyer));
         
         if (itemToSpawn)
         {
@@ -116,7 +109,7 @@ public class Clicker : MonoBehaviour
     public void UpgradeAutoTime(float value)
     {
         level++;
-        autoTime -= (autoTime * .1f);
+        autoTime -= (autoTime * .2f);
     }
 
     public void UpgradeClickMultiplyer()
@@ -125,14 +118,4 @@ public class Clicker : MonoBehaviour
         
     }
 
-
-    void SetCurrency(int value)
-    {
-        currency = value;
-    }
-
-    public int GetCurrency()
-    {
-        return currency;
-    }
 }
